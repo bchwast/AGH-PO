@@ -19,7 +19,7 @@ public class World{
     }
 
     public static List<Direction> translate(String[] input){
-        List<Direction> output = new ArrayList<Direction>();
+        List<Direction> output = new ArrayList<>();
 
         for (String arg : input){
             String mess = switch(arg){
@@ -41,7 +41,7 @@ public class World{
     public static void main(String[] args){
         out.println("Start");
 
-//        String[] sample = new String[]{"f", "f", "mazik", "r", "f", "l", "b"};
+//        String[] sample = new String[]{"f", "f", "mazik", "r", "f", "adsa", "ad", "l", "b"};
         List<Direction> directions = translate(args);
         run(directions);
         out.println("Stop");
