@@ -42,8 +42,14 @@ public class World{
         out.println("Start");
 
 //        String[] sample = new String[]{"f", "f", "mazik", "r", "f", "adsa", "ad", "l", "b"};
-        List<Direction> directions = translate(args);
-        run(directions);
+//        List<Direction> directions = translate(args);
+//        run(directions);
+
+        Vector2d position1 = new Vector2d(1, 2);
+        out.println(position1);
+        Vector2d position2 = new Vector2d(-2, 1);
+        out.println(position2);
+        out.println(position1.equals(new Vector2d(1, 2)));
         out.println("Stop");
     }
 }
