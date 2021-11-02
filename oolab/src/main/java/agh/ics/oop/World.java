@@ -1,6 +1,8 @@
 package agh.ics.oop;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import static java.lang.System.out;
 
 
@@ -41,15 +43,15 @@ public class World{
     public static void main(String[] args){
         out.println("Start");
 
-//        String[] sample = new String[]{"f", "f", "mazik", "r", "f", "adsa", "ad", "l", "b"};
-//        List<Direction> directions = translate(args);
-//        run(directions);
+        String[] sample = new String[]{"f", "f", "mazik", "r", "f", "adsa", "ad", "l", "b"};
+        OptionsParser sampleInput = new OptionsParser(sample);
+        List<MoveDirection> directions = sampleInput.parse();
 
-        Vector2d position1 = new Vector2d(1, 2);
-        out.println(position1);
-        Vector2d position2 = new Vector2d(-2, 1);
-        out.println(position2);
-        out.println(position1.equals(new Vector2d(1, 2)));
+        Animal sampleAnimal = new Animal();
+        for (MoveDirection move : directions) {
+            sampleAnimal.move(move);
+        }
+        out.println(sampleAnimal);
         out.println("Stop");
     }
 }

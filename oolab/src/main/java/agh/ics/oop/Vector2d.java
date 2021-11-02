@@ -44,4 +44,8 @@ public class Vector2d {
     public Vector2d opposite() {
         return new Vector2d((-1) * this.x, (-1) * this.y);
     }
+
+    public boolean isInArea() {
+        return this.follows(new Vector2d(0, 0)) && this.precedes(new Vector2d(4, 4));
+    }
 }

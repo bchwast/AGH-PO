@@ -7,15 +7,15 @@ import static org.junit.jupiter.api.Assertions.*;
 public class Vector2dTest {
     @Test
     public void equals() {
-        assertTrue(new Vector2d(4, 4).equals(new Vector2d(4, 4)));
-        assertFalse(new Vector2d(4, 4).equals(new Vector2d(4, 2)));
-        assertFalse(new Vector2d(4, 4).equals(new int[]{4, 4}));
+        assertEquals(new Vector2d(4, 4), new Vector2d(4, 4));
+        assertNotEquals(new Vector2d(4, 4), new Vector2d(4, 2));
+        assertNotEquals(new Vector2d(4, 4), new int[]{4, 4});
     }
 
     @Test
-    public void toStirng() {
-        assertEquals(new Vector2d(24, 11).toString(), "(24,11)");
-        assertNotEquals(new Vector2d(213, 42).toString(), "something");
+    public void testToString() {
+        assertEquals("(24,11)", (new Vector2d(24, 11).toString()));
+        assertNotEquals("something", new Vector2d(213, 42).toString());
     }
 
     @Test
@@ -44,26 +44,26 @@ public class Vector2dTest {
 
     @Test
     public void upperRight() {
-        assertEquals(new Vector2d(1, 6).upperRight(new Vector2d(-3, 9)), new Vector2d(1, 9));
+        assertEquals(new Vector2d(1, 9), new Vector2d(1, 6).upperRight(new Vector2d(-3, 9)));
     }
 
     @Test
     public void lowerLeft() {
-        assertEquals(new Vector2d(1, 6).lowerLeft(new Vector2d(-3, 9)), new Vector2d(-3, 6));
+        assertEquals(new Vector2d(-3, 6), new Vector2d(1, 6).lowerLeft(new Vector2d(-3, 9)));
     }
 
     @Test
     public void add() {
-        assertEquals(new Vector2d(4, 2).add(new Vector2d(7, -3)), new Vector2d(11, -1));
+        assertEquals(new Vector2d(11, -1), new Vector2d(4, 2).add(new Vector2d(7, -3)));
     }
 
     @Test
     public void subtract() {
-        assertEquals(new Vector2d(4, 2).subtract(new Vector2d(7, -3)), new Vector2d(-3, 5));
+        assertEquals(new Vector2d(-3, 5), new Vector2d(4, 2).subtract(new Vector2d(7, -3)));
     }
 
     @Test
     public void opposite() {
-        assertEquals(new Vector2d(21, -15).opposite(), new Vector2d(-21, 15));
+        assertEquals(new Vector2d(-21, 15), new Vector2d(21, -15).opposite());
     }
 }

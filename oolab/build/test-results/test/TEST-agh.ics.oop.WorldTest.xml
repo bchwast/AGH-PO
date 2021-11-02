@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="agh.ics.oop.WorldTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2021-11-02T19:44:58" hostname="bchwast-Swift-SF314-42" time="0.085">
+  <properties/>
+  <testcase name="direction()" classname="agh.ics.oop.WorldTest" time="0.06"/>
+  <testcase name="area()" classname="agh.ics.oop.WorldTest" time="0.002"/>
+  <testcase name="parse()" classname="agh.ics.oop.WorldTest" time="0.013"/>
+  <testcase name="position()" classname="agh.ics.oop.WorldTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

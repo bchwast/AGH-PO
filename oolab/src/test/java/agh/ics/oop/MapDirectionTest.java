@@ -13,7 +13,7 @@ public class MapDirectionTest {
         MapDirection.NORTH};
 
         for (int i = 0; i < 4; i++) {
-            assertEquals(base[i].next(), expected[i]);
+            assertEquals(expected[i], base[i].next());
         }
     }
 
@@ -24,7 +24,7 @@ public class MapDirectionTest {
         MapDirection.SOUTH};
 
         for (int i = 0; i < 4; i++) {
-            assertEquals(base[i].previous(), expected[i]);
+            assertEquals(expected[i], base[i].previous());
         }
     }
 }
