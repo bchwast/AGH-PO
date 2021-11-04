@@ -19,13 +19,10 @@ public class WorldTest {
         List<MoveDirection> expected1 = new ArrayList<>(Arrays.asList(FORWARD, FORWARD, RIGHT, RIGHT, BACKWARD, FORWARD, LEFT, LEFT));
         List<MoveDirection> expected2 = new ArrayList<>(List.of());
         List<MoveDirection> expected3 = new ArrayList<>(Arrays.asList(BACKWARD, BACKWARD, FORWARD, RIGHT, LEFT, FORWARD));
-        OptionsParser parser1 = new OptionsParser(set1);
-        OptionsParser parser2 = new OptionsParser(set2);
-        OptionsParser parser3 = new OptionsParser(set3);
 
-        assertEquals(expected1, parser1.parse());
-        assertEquals(expected2, parser2.parse());
-        assertEquals(expected3, parser3.parse());
+        assertEquals(expected1, OptionsParser.parse(set1));
+        assertEquals(expected2, OptionsParser.parse(set2));
+        assertEquals(expected3, OptionsParser.parse(set3));
     }
 
     @Test

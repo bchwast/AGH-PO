@@ -44,12 +44,12 @@ public class World{
         out.println("Start");
 
         String[] sample = new String[]{"f", "f", "mazik", "r", "f", "adsa", "ad", "l", "b"};
-        OptionsParser sampleInput = new OptionsParser(sample);
-        List<MoveDirection> directions = sampleInput.parse();
+        List<MoveDirection> directions = OptionsParser.parse(sample);
 
         Animal sampleAnimal = new Animal();
         for (MoveDirection move : directions) {
             sampleAnimal.move(move);
+            out.println(sampleAnimal);
         }
         out.println(sampleAnimal);
         out.println("Stop");

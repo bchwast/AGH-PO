@@ -4,16 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OptionsParser {
-    private final String[] input;
-
-    public OptionsParser(String[] input){
-        this.input = input;
-    }
-
-    public List<MoveDirection> parse() {
+    static public List<MoveDirection> parse(String[] input) {
         List<MoveDirection> output = new ArrayList<>();
 
-        for (String arg : this.input) {
+        for (String arg : input) {
             String mess = switch(arg) {
                 case "f", "forward" -> "FORWARD";
                 case "b", "backward" -> "BACKWARD";
