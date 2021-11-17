@@ -43,15 +43,13 @@ public class World{
     public static void main(String[] args){
         out.println("Start");
 
-        String[] sample = new String[]{"f", "f", "mazik", "r", "f", "adsa", "ad", "l", "b"};
+        String[] sample = new String[]{"f", "b", "r", "l", "f", "f", "r", "r", "f", "f", "f", "f", "f", "f", "f", "f"};
         List<MoveDirection> directions = OptionsParser.parse(sample);
+        IWorldMap map = new RectangularMap(10, 5);
+        List<Vector2d> positions = new ArrayList<>(List.of(new Vector2d(2,2), new Vector2d(3, 4)));
+        IEngine engine = new SimulationEngine(directions, map, positions);
+        engine.run();
 
-        Animal sampleAnimal = new Animal();
-        for (MoveDirection move : directions) {
-            sampleAnimal.move(move);
-            out.println(sampleAnimal);
-        }
-        out.println(sampleAnimal);
         out.println("Stop");
     }
 }

@@ -1,27 +1,17 @@
 package agh.ics.oop;
 
 public class Animal {
-    private MapDirection direction;
-    private Vector2d position;
+    private MapDirection direction = MapDirection.NORTH;
+    private Vector2d position = new Vector2d(2, 2);
+    private IWorldMap map;
 
-    public Animal() {
-        this.direction = MapDirection.NORTH;
-        this.position = new Vector2d(2, 2);
+    public Animal(IWorldMap map) {
+        this.map = map;
     }
 
-    public Animal(MapDirection direction) {
-        this.direction = direction;
-        this.position = new Vector2d(2, 2);
-    }
-
-    public Animal(Vector2d position) {
-        this.direction = MapDirection.NORTH;
-        this.position = position;
-    }
-
-    public Animal(MapDirection direction, Vector2d position) {
-        this.direction = direction;
-        this.position = position;
+    public Animal(IWorldMap map, Vector2d initialPosition) {
+        this.map = map;
+        this.position = initialPosition;
     }
 
     public MapDirection getDirection() {
@@ -33,15 +23,16 @@ public class Animal {
     }
 
     public String toString() {
-        return this.position + " " + this.direction;
+        return switch (this.direction) {
+            case NORTH -> "N";
+            case EAST -> "E";
+            case SOUTH -> "S";
+            case WEST -> "W";
+        };
     }
 
     public boolean isAt(Vector2d position) {
         return this.position.equals(position);
-    }
-
-    private boolean isInArea(Vector2d position) {
-        return position.follows(new Vector2d(0, 0)) && position.precedes(new Vector2d(4, 4));
     }
 
     public void move(MoveDirection direction) {
@@ -53,12 +44,12 @@ public class Animal {
                 this.direction = this.direction.next();
                 break;
             case FORWARD:
-                if (isInArea(this.position.add(this.direction.toUnitVector()))) {
+                if (map.canMoveTo(this.position.add(this.direction.toUnitVector()))) {
                     this.position = this.position.add(this.direction.toUnitVector());
                 }
                 break;
             case BACKWARD:
-                if (isInArea(this.position.subtract(this.direction.toUnitVector()))) {
+                if (map.canMoveTo(this.position.subtract(this.direction.toUnitVector()))) {
                     this.position = this.position.subtract(this.direction.toUnitVector());
                 }
                 break;
