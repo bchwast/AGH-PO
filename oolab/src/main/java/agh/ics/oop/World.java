@@ -45,7 +45,7 @@ public class World{
 
         String[] sample = new String[]{"f", "b", "r", "l", "f", "f", "r", "r", "f", "f", "f", "f", "f", "f", "f", "f"};
         List<MoveDirection> directions = OptionsParser.parse(sample);
-        IWorldMap map = new RectangularMap(10, 5);
+        IWorldMap map = new GrassField(10);
         List<Vector2d> positions = new ArrayList<>(List.of(new Vector2d(2,2), new Vector2d(3, 4)));
         IEngine engine = new SimulationEngine(directions, map, positions);
         engine.run();

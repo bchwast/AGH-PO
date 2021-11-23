@@ -54,4 +54,20 @@ public class SimulationEngineTest {
 
         assertEquals(new Vector2d(15, 0), engine.getAnimalPositions(0));
     }
+
+    @Test
+    void test4() {
+        List<MoveDirection> directions = OptionsParser.parse(new String[]{"f", "b", "r", "l", "f", "f", "r", "r",
+                "f", "f", "f", "f", "f", "f", "f", "f"});
+        IWorldMap map = new GrassField(15);
+        List<Vector2d> positions = new ArrayList<>(List.of(new Vector2d(2, 2), new Vector2d(3, 4)));
+        SimulationEngine engine = new SimulationEngine(directions, map, positions);
+        engine.run();
+
+        List<Vector2d> expectedPositions = new ArrayList<>(List.of(new Vector2d(2, -1), new Vector2d(3, 7)));
+
+        for (int i = 0; i < 2; i++) {
+            assertEquals(expectedPositions.get(i), engine.getAnimalPositions(i));
+        }
+    }
 }

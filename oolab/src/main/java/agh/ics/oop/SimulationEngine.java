@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SimulationEngine implements IEngine{
-    private List<MoveDirection> directions;
-    private IWorldMap map;
-    private List<Animal> animals;
+    private final List<MoveDirection> directions;
+    private final IWorldMap map;
+    private final List<Animal> animals;
 
     public List<Animal> getAnimals() {
         return animals;
