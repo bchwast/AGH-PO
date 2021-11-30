@@ -1,5 +1,7 @@
 package agh.ics.oop;
 
+import java.util.Objects;
+
 public class Vector2d {
     final public int x;
     final public int y;
@@ -45,7 +47,8 @@ public class Vector2d {
         return new Vector2d((-1) * this.x, (-1) * this.y);
     }
 
-    public boolean isInArea() {
-        return this.follows(new Vector2d(0, 0)) && this.precedes(new Vector2d(4, 4));
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.x, this.y);
     }
 }

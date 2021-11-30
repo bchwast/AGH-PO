@@ -1,5 +1,6 @@
 package agh.ics.oop;
 
+import java.util.Map;
 import java.util.Random;
 
 public class GrassField extends AbstractWorldMap implements IWorldMap{
@@ -23,7 +24,7 @@ public class GrassField extends AbstractWorldMap implements IWorldMap{
             Vector2d grassPosition = new Vector2d(x, y);
             if (! isOccupied(grassPosition)) {
                 cnt++;
-                this.mapElementsList.add(new Grass(grassPosition));
+                this.mapElementsList.put(grassPosition, new Grass(grassPosition));
             }
         }
     }
@@ -32,7 +33,7 @@ public class GrassField extends AbstractWorldMap implements IWorldMap{
     public boolean canMoveTo(Vector2d position) {
         Object object = objectAt(position);
         if (object instanceof Grass) {
-            mapElementsList.remove(object);
+            mapElementsList.remove(position);
             generateGrass(1);
         }
         return super.canMoveTo(position);
@@ -40,9 +41,10 @@ public class GrassField extends AbstractWorldMap implements IWorldMap{
 
     @Override
     public String toString() {
-        for (AbstractWorldMapElement element : mapElementsList) {
-            this.lowerLeftCorner = this.lowerLeftCorner.lowerLeft(element.getPosition());
-            this.upperRightCorner = this.upperRightCorner.upperRight(element.getPosition());
+        for (Map.Entry<Vector2d, AbstractWorldMapElement> element : mapElementsList.entrySet()) {
+            if (element.getValue() instanceof Animal)
+                this.lowerLeftCorner = this.lowerLeftCorner.lowerLeft(element.getKey());
+                this.upperRightCorner = this.upperRightCorner.upperRight(element.getKey());
         }
         return super.toString();
     }
