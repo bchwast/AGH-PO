@@ -6,11 +6,6 @@ import java.util.TreeMap;
 public class MapBoundary implements IPositionChangeObserver{
     private final TreeMap<Vector2d, IMapElement> mapElementsX = new TreeMap<Vector2d, IMapElement>(new MapBoundaryComparator("x"));
     private final TreeMap<Vector2d, IMapElement> mapElementsY = new TreeMap<Vector2d, IMapElement>(new MapBoundaryComparator("y"));
-    private final IWorldMap map;
-
-    public MapBoundary(IWorldMap map) {
-        this.map = map;
-    }
 
     public void addElement(IMapElement element) {
         this.mapElementsX.put(element.getPosition(), element);

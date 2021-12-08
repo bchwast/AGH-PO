@@ -10,7 +10,7 @@ public class GrassField extends AbstractWorldMap implements IWorldMap{
     public GrassField(int grassAmm) {
         this.grassAmm = grassAmm;
         this.maxCord = (int) Math.ceil(Math.sqrt(grassAmm * 10));
-        this.mapBoundary = new MapBoundary(this);
+        this.mapBoundary = new MapBoundary();
         generateGrass(grassAmm);
     }
 
