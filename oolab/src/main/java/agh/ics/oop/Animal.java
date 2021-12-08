@@ -39,14 +39,16 @@ public class Animal extends AbstractWorldMapElement{
             case FORWARD -> {
                 Vector2d higherPosition = this.position.add(this.direction.toUnitVector());
                 if (map.canMoveTo(higherPosition)) {
-                    positionChanged(higherPosition);
+                    Vector2d oldPosition = this.position;
+                    positionChanged(oldPosition, higherPosition);
                     this.position = higherPosition;
                 }
             }
             case BACKWARD -> {
                 Vector2d lowerPosition = this.position.subtract(this.direction.toUnitVector());
                 if (map.canMoveTo(lowerPosition)) {
-                    positionChanged(lowerPosition);
+                    Vector2d oldPosition = this.position;
+                    positionChanged(oldPosition, lowerPosition);
                     this.position = lowerPosition;
                 }
             }
@@ -61,9 +63,9 @@ public class Animal extends AbstractWorldMapElement{
         this.observersList.remove(observer);
     }
 
-    private void positionChanged(Vector2d newPosition) {
+    private void positionChanged(Vector2d oldPosition, Vector2d newPosition) {
         for (IPositionChangeObserver observer : this.observersList) {
-            observer.positionChanged(this.position, newPosition);
+            observer.positionChanged(oldPosition, newPosition);
         }
     }
 }

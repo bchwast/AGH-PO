@@ -12,7 +12,7 @@ public class AnimalTest {
     @Test
     void direction() {
         Animal testAnimal = new Animal(new RectangularMap(5, 5));
-        String[] input = new String[]{"f", "forwrd", "r", "forward", "r", "R", "left", "l", "fr", "l", "b", "L", "l"};
+        String[] input = new String[]{"f", "r", "forward", "r", "left", "l", "l", "b", "l"};
         List<MoveDirection> parsedInput = OptionsParser.parse(input);
         MapDirection[] expected = new MapDirection[]{NORTH, EAST, EAST, SOUTH, EAST, NORTH, WEST, WEST, SOUTH};
 
@@ -25,7 +25,7 @@ public class AnimalTest {
     @Test
     void position() {
         Animal testAnimal = new Animal(new RectangularMap(5, 5), new Vector2d(2, 1));
-        String[] input = new String[]{"f", "R", "r", "f", "r", "lEeft", "l", "rght", "l", "left", "b", "B", "l", "forward"};
+        String[] input = new String[]{"f", "r", "f", "r", "l", "l", "left", "b", "l", "forward"};
         List<MoveDirection> parsedInput = OptionsParser.parse(input);
         Vector2d[] expected = new Vector2d[]{new Vector2d(2, 2), new Vector2d(2, 2), new Vector2d(3, 2),
                 new Vector2d(3, 2), new Vector2d(3, 2), new Vector2d(3, 2), new Vector2d(3, 2),

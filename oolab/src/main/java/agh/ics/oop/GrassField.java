@@ -1,15 +1,16 @@
 package agh.ics.oop;
 
-import java.util.Map;
 import java.util.Random;
 
 public class GrassField extends AbstractWorldMap implements IWorldMap{
     private final int grassAmm;
     private final int maxCord;
+    private final MapBoundary mapBoundary;
 
     public GrassField(int grassAmm) {
         this.grassAmm = grassAmm;
         this.maxCord = (int) Math.ceil(Math.sqrt(grassAmm * 10));
+        this.mapBoundary = new MapBoundary(this);
         generateGrass(grassAmm);
     }
 
@@ -24,28 +25,43 @@ public class GrassField extends AbstractWorldMap implements IWorldMap{
             Vector2d grassPosition = new Vector2d(x, y);
             if (! isOccupied(grassPosition)) {
                 cnt++;
-                this.mapElementsList.put(grassPosition, new Grass(grassPosition));
+                Grass grass = new Grass(grassPosition);
+                this.mapBoundary.addElement(grass);
+                this.mapElementsList.put(grassPosition, grass);
             }
         }
     }
 
     @Override
     public boolean canMoveTo(Vector2d position) {
-        Object object = objectAt(position);
-        if (object instanceof Grass) {
-            mapElementsList.remove(position);
+        IMapElement element = objectAt(position);
+        if (element instanceof Grass) {
+            this.mapBoundary.removeElement(element);
+            this.mapElementsList.remove(position);
             generateGrass(1);
         }
         return super.canMoveTo(position);
     }
 
     @Override
+    public boolean place(Animal animal) {
+        super.place(animal);
+        this.mapBoundary.addElement(animal);
+        return true;
+    }
+
+    @Override
     public String toString() {
-        for (Map.Entry<Vector2d, AbstractWorldMapElement> element : mapElementsList.entrySet()) {
-            if (element.getValue() instanceof Animal)
-                this.lowerLeftCorner = this.lowerLeftCorner.lowerLeft(element.getKey());
-                this.upperRightCorner = this.upperRightCorner.upperRight(element.getKey());
-        }
+        this.lowerLeftCorner = this.mapBoundary.getLowerLeft();
+        this.upperRightCorner = this.mapBoundary.getUpperRight();
         return super.toString();
+    }
+
+    @Override
+    public void positionChanged(Vector2d oldPosition, Vector2d newPosition) {
+        IMapElement element = this.mapElementsList.get(oldPosition);
+        this.mapElementsList.put(newPosition, element);
+        this.mapBoundary.positionChanged(oldPosition, newPosition);
+        this.mapElementsList.remove(oldPosition);
     }
 }

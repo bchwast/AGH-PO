@@ -1,5 +1,8 @@
 package agh.ics.oop;
 
+import agh.ics.oop.gui.App;
+import javafx.application.Application;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,15 +44,14 @@ public class World{
     }
 
     public static void main(String[] args){
-        out.println("Start");
+        try {
+            out.println("Start");
+            Application.launch(App.class, args);
 
-        String[] sample = new String[]{"f", "b", "r", "l", "f", "f", "r", "r", "f", "f", "f", "f", "f", "f", "f", "f"};
-        List<MoveDirection> directions = OptionsParser.parse(sample);
-        IWorldMap map = new GrassField(10);
-        List<Vector2d> positions = new ArrayList<>(List.of(new Vector2d(2,2), new Vector2d(3, 4)));
-        IEngine engine = new SimulationEngine(directions, map, positions);
-        engine.run();
-
-        out.println("Stop");
+            out.println("Stop");
+        }
+        catch(IllegalArgumentException ex) {
+            out.println("An error has occured:\n" + ex);
+        }
     }
 }

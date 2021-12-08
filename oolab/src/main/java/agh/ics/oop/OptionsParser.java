@@ -8,7 +8,7 @@ public class OptionsParser {
         List<MoveDirection> output = new ArrayList<>();
 
         for (String arg : input) {
-            String mess = switch(arg) {
+            String mess = switch (arg) {
                 case "f", "forward" -> "FORWARD";
                 case "b", "backward" -> "BACKWARD";
                 case "l", "left" -> "LEFT";
@@ -16,9 +16,11 @@ public class OptionsParser {
                 default -> "pass";
             };
 
-            if (! mess.equals("pass")) {
-                output.add(MoveDirection.valueOf(mess));
+            if (mess.equals("pass")) {
+                throw new IllegalArgumentException(arg + " is not legal move specification");
             }
+
+            output.add(MoveDirection.valueOf(mess));
         }
 
         return output;

@@ -31,7 +31,7 @@ public class RectangularMapTest {
 
         assertTrue(map.place(new Animal(map)));
         assertTrue(map.place(new Animal(map, new Vector2d(3,4))));
-        assertFalse(map.place(new Animal(map)));
+        assertThrows(IllegalArgumentException.class, () -> map.place(new Animal(map)));
     }
 
     @Test
