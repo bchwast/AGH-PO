@@ -44,7 +44,7 @@ public interface IWorldMap extends IPositionChangeObserver {
      *            The position of the object.
      * @return Object or null if the position is not occupied.
      */
-    IMapElement objectAt(Vector2d position);
+    Object objectAt(Vector2d position);
 
     Vector2d[] getCorners();
 }

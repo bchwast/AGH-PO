@@ -1,5 +1,6 @@
 package agh.ics.oop;
 
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,4 +69,15 @@ public class Animal extends AbstractWorldMapElement{
             observer.positionChanged(oldPosition, newPosition);
         }
     }
+
+    @Override
+    public String getImagePath() {
+        return switch (this.direction) {
+            case NORTH -> "src/main/resources/up.png";
+            case EAST -> "src/main/resources/right.png";
+            case SOUTH -> "src/main/resources/down.png";
+            case WEST -> "src/main/resources/left.png";
+        };
+    }
+
 }

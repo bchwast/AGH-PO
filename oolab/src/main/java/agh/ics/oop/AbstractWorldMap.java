@@ -28,7 +28,7 @@ public abstract class AbstractWorldMap implements IWorldMap{
     }
 
     @Override
-    public IMapElement objectAt(Vector2d position) {
+    public Object objectAt(Vector2d position) {
         return mapElementsList.get(position);
     }
 
