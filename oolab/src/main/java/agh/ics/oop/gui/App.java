@@ -103,7 +103,7 @@ public class App extends Application implements IMapUpdateObserver {
             engineThread.start();
         });
 
-        Scene scene = new Scene(main, 1920, 1080);
+        Scene scene = new Scene(main, 1920, 1080    );
         primaryStage.setScene(scene);
         primaryStage.show();
     }
